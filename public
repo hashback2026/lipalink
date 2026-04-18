@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bulk STK Bot</title>
+</head>
+<body>
+  <h2>Bulk STK Push</h2>
+
+  <textarea id="data" rows="10" cols="40"
+    placeholder="254712345678,100"></textarea><br><br>
+
+  <button onclick="send()">Send STK</button>
+
+  <script>
+    async function send() {
+      const text = document.getElementById("data").value;
+
+      const res = await fetch("/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: text })
+      });
+
+      const result = await res.json();
+      alert(result.message);
+    }
+  </script>
+</body>
+</html>
